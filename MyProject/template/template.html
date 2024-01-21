@@ -1,0 +1,51 @@
+<!-- your_app/templates/your_app/your_template.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Django Form</title>
+    <!-- Include any additional CSS stylesheets or libraries here -->
+</head>
+<body>
+    <h1>Cloud Message Board</h1>
+
+    <form method="post" action="{% url 'home' %}">
+        {% csrf_token %}
+
+        <!-- Text Input 1 -->
+        <label for="input1">Sender Name (A) :</label>
+        <input type="text" id="input1" name="input1" required>
+        <br>
+
+        <!-- Text Input 2 -->
+        <label for="input2">Receiver Name (A) :</label>
+        <input type="text" id="input2" name="input2" required>
+        <br>
+
+<!-- label for="rich_text_field">Message :</label>
+
+<br>-->
+        Rich Text Input
+        <label for="rich_text_field">Rich Text Input:</label>
+        <textarea id="rich_text_field" name="rich_text_field" required></textarea>
+        <br>
+
+        <button type="submit">Send Message</button>
+    </form>
+<hr>
+
+	{% if existing_data %}
+    <h2>Messages :</h2>
+    <ol>
+        {% for data in existing_data %}
+            <li>Sender : <b>{{ data.input1 }}</b> </br> To:<b>{{ data.input2 }}</b> </br> "{{ rich_text_field }}"</li></br></br>
+        {% endfor %}
+    </ol>
+	{% endif %}
+    <!-- Include any additional scripts or libraries for rich text editing here -->
+
+</body>
+</html>
+
